@@ -33,8 +33,19 @@ final class UserListViewModel {
         
         api.getUsers(success: { (users) in
             self.users.append(contentsOf: users)
+            for user in users {
+                // UserCellViewModelの配列を作成
+                
+                // 成功
+                self.stateDidUpdate?(.finish)
+            }
         }, failure: { (error) in
-            
+            // 失敗
+            self.stateDidUpdate?(.error(error))
         })
+    }
+    
+    func usersCount() -> Int {
+        return self.users.count
     }
 }
