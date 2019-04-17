@@ -40,6 +40,24 @@ final class UserCellViewModel {
         self.user = user
     }
     
-    
+    func downloadImage(progress: @escaping (ImageDownloadProgress) -> Void) {
+        if self.isLoading {
+            return
+        }
+        self.isLoading = true
+        // 仮のUIImageを作成
+        let loadingImage = UIImage(color: .gray, size: CGSize(width: 45, height: 45))!
+        // loadingをClosureで返す
+        progress(.loading(loadingImage))
+        
+        // 画像をダウンロード
+        imageDownloader.downloadImage(imageUrl: user.iconUrl, success: { image in
+            progress(.finish(image))
+            self.isLoading = false
+        }, failure: { error in
+            progress(.error)
+            self.isLoading = false
+        })
+    }
     
 }
