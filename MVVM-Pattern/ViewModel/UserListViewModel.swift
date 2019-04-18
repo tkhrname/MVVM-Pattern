@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// テスト
 // 通信状態
 enum ViewModelState {
     case loading
