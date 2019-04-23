@@ -36,7 +36,8 @@ final class UserListViewModel {
             self.users.append(contentsOf: users)
             for user in users {
                 // UserCellViewModelの配列を作成
-                
+                let cellViewModel = UserCellViewModel(user: user)
+                self.cellViewModels.append(cellViewModel)
                 // 成功
                 self.stateDidUpdate?(.finish)
             }

@@ -28,7 +28,6 @@ enum APIError: Error, CustomStringConvertible {
 }
 
 class API {
-    
     /// リクエストを送る
     /// 受け取ったJsonからUserの配列を作成してClosureで返す
     /// ErrorがあったらErrorをClosureで返す
