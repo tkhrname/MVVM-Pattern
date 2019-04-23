@@ -29,7 +29,6 @@ class TimeLineCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init error")
     }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.iconView.frame = CGRect(x: 15, y: 15, width: 45, height: 45)
