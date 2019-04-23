@@ -20,11 +20,56 @@ final class TimeLineViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // table生成
+        self.tableView = UITableView(frame: self.view.bounds, style: .plain)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.register(TimeLineCell.self, forCellReuseIdentifier: "TimeLineCell")
+        self.view.addSubview(self.tableView)
+        
+        // UIRefreshControl生成
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: #selector(refreshControlValueDidChanged(sender:)), for: .valueChanged)
+        self.tableView.refreshControl = self.refreshControl
+        
+        // UserListViewModel生成
+        self.viewModel = UserListViewModel()
+        self.viewModel.stateDidUpdate = {[weak self] state in
+            switch state {
+            case .loading:
+                break
+            case .finish:
+                break
+            case .error(let error):
+                break
+            }
+        }
     }
     
-
+    @objc func refreshControlValueDidChanged(sender: UIRefreshControl) {
+        // リフレッシュ処理
+    }
     /*
     // MARK: - Navigation
     */
 
+}
+
+// MARK: - UITableViewDataSource
+extension TimeLineViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        return cell
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
+extension TimeLineViewController: UITableViewDelegate {
+    
 }
