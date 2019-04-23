@@ -21,6 +21,7 @@
 		6D6DDEC9224B993A00D26EF4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DDEC8224B993A00D26EF4 /* API.swift */; };
 		6D95D3FA2266FF0B00BBCABA /* EUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D95D3F92266FF0B00BBCABA /* EUIImage.swift */; };
 		6D95D3FD226F096D00BBCABA /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D95D3FC226F096D00BBCABA /* TimeLineCell.swift */; };
+		6D95D400226F14A600BBCABA /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D95D3FF226F14A600BBCABA /* TimeLineViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		6D6DDEC8224B993A00D26EF4 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		6D95D3F92266FF0B00BBCABA /* EUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUIImage.swift; sourceTree = "<group>"; };
 		6D95D3FC226F096D00BBCABA /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
+		6D95D3FF226F14A600BBCABA /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		6D6DDE96224B973500D26EF4 /* MVVM-Pattern */ = {
 			isa = PBXGroup;
 			children = (
+				6D95D3FE226F148900BBCABA /* ViewController */,
 				6D95D3FB226F094800BBCABA /* View */,
 				6D95D3F82266FEEB00BBCABA /* Extension */,
 				6D6DDEC5224B984A00D26EF4 /* Model */,
@@ -176,6 +179,14 @@
 				6D95D3FC226F096D00BBCABA /* TimeLineCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		6D95D3FE226F148900BBCABA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D95D3FF226F14A600BBCABA /* TimeLineViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +323,7 @@
 				6D6DDE9A224B973500D26EF4 /* ViewController.swift in Sources */,
 				6D367EAF2266147F00C360C7 /* UserListViewModel.swift in Sources */,
 				6D367EB1226619E900C360C7 /* UserCellViewModel.swift in Sources */,
+				6D95D400226F14A600BBCABA /* TimeLineViewController.swift in Sources */,
 				6D6DDE98224B973500D26EF4 /* AppDelegate.swift in Sources */,
 				6D6DDEC9224B993A00D26EF4 /* API.swift in Sources */,
 				6D367EAC22660DDD00C360C7 /* ImageDownloder.swift in Sources */,
