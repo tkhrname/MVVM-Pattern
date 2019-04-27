@@ -35,41 +35,79 @@ final class TimeLineViewController: UIViewController {
         
         // UserListViewModel生成
         self.viewModel = UserListViewModel()
-        self.viewModel.stateDidUpdate = {[weak self] state in
+        self.viewModel.stateDidUpdate = { [weak self] state in
             switch state {
             case .loading:
-                break
+                // 通信中の処理
+                self?.tableView.isUserInteractionEnabled = false
             case .finish:
-                break
+                // 通信完了
+                self?.tableView.isUserInteractionEnabled = true
+                self?.tableView.reloadData()
+                self?.refreshControl.endRefreshing()
             case .error(let error):
-                break
+                self?.tableView.isUserInteractionEnabled = true
+                self?.refreshControl.endRefreshing()
+                let alertController = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(alertAction)
+                self?.present(alertController, animated: true, completion: nil)
             }
         }
+        // ユーザー一覧を取得
+        self.viewModel.getUsers()
     }
     
     @objc func refreshControlValueDidChanged(sender: UIRefreshControl) {
         // リフレッシュ処理
+        self.viewModel.getUsers()
     }
-    /*
-    // MARK: - Navigation
-    */
 
 }
 
 // MARK: - UITableViewDataSource
 extension TimeLineViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.viewModel.usersCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        return cell
+        if let timeLineCell = tableView.dequeueReusableCell(withIdentifier: "TimeLineCell") as? TimeLineCell {
+            // UserCellViewModelを取得
+            let cellViewModel = self.viewModel.cellViewModels[indexPath.row]
+            // NickName設定
+            timeLineCell.setNickName(nickName: cellViewModel.nickName)
+            // icon設定
+            cellViewModel.downloadImage() { progress in
+                switch progress {
+                case .loading(let image):
+                    timeLineCell.setIcon(icon: image)
+                case .finish(let image):
+                    timeLineCell.setIcon(icon: image)
+                case .error:
+                    break
+                }
+            }
+            return timeLineCell
+        }
+        fatalError()
     }
     
 }
 
 // MARK: - UITableViewDelegate
 extension TimeLineViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        // 遷移する
+        let cellViewModel = self.viewModel.cellViewModels[indexPath.row]
+        let webURL = cellViewModel.webURL
+        let webViewController = SFSafariViewController(url: webURL)
+        self.navigationController?.pushViewController(webViewController, animated: true)
+    }
 }

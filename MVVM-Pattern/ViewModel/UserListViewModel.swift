@@ -27,6 +27,7 @@ final class UserListViewModel {
     var cellViewModels = [UserCellViewModel]()
     // Model層で定義したAPIクラスを変数として保持
     let api = API()
+    
     // Userの配列を取得する
     func getUsers() {
         self.stateDidUpdate?(.loading)
