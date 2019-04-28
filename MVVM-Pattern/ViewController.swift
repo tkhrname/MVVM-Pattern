@@ -8,11 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+    
+    @IBOutlet private weak var idTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var validationLabel: UILabel!
+    
+    private let notificationCenter = NotificationCenter()
+    private lazy var viewModel = ViewModel(notificationCenter: notificationCenter)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
 

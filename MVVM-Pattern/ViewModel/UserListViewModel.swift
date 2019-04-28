@@ -17,6 +17,9 @@ enum ViewModelState {
     case error(Error)
 }
 
+/*
+ 
+ */
 final class UserListViewModel {
     // ViewModelStateをclosureとしてpropertyで保持
     // この変数がViewControllerに対して通知を送る役割を果たす
