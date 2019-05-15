@@ -10,9 +10,17 @@ import Foundation
 
 final class ViewModel {
     
-    init(notificationCenter: NotificationCenter, Model: ModelProtocol = Model()) {
-        
+    let changeText = Notification.Name("changeText")
+    
+    private let notificationCenter: NotificationCenter
+    private let model: ModelProtocol
+    
+    init(notificationCenter: NotificationCenter, model: ModelProtocol = Model()) {
+        self.notificationCenter = notificationCenter
+        self.model = model
     }
+    
+    
     
 }
 

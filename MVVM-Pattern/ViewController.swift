@@ -19,8 +19,30 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.idTextField.addTarget(self,
+                                   action: #selector(textFieldEditingChanged),
+                                   for: .editingChanged)
+        
+        self.notificationCenter.addObserver(self,
+                                            selector: #selector(updateValidationText),
+                                            name: viewModel.changeText,
+                                            object: nil)
     }
 
 
 }
 
+extension ViewController {
+    @objc func textFieldEditingChanged(sender: UITextField) {
+        
+    }
+    
+    @objc func updateValidationText(notification: Notification) {
+        
+    }
+    
+    @objc func updateValidationColor(notification: Notification) {
+        
+    }
+}
