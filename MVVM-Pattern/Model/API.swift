@@ -40,6 +40,7 @@ class API {
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        request.httpBody = nil
         request.timeoutInterval = 10
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
